@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Text.Json.Serialization;
 
 namespace MauiWeatherApi.Models.ApiModels
 {
     class WeatherApiResponse
     {
-
+        [JsonPropertyName("request")]
         public WeatherApiResponseRequest request { get; set; }
         public WeatherApiResponseLocation location { get; set; }
         public WeatherApiResponseCurrent current { get; set; }
