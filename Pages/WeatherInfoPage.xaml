@@ -17,13 +17,44 @@
                 <Entry Placeholder="Lat" Grid.Column="0" />
                 <Entry Placeholder="Lon" Grid.Column="1" />
                 <Button Text="Fetch" Grid.Column="2"/>
-                
             </Grid>
-            
         </Frame>
+        
         <Image WidthRequest="100" HeightRequest="100"/>
+        
         <Label HorizontalOptions="Center" FontSize="70" TextColor="White" Text="0°C" />
         <Label HorizontalOptions="Center" FontSize="25" FontAttributes="Bold" TextColor="White" Text="Raining" />
+        <Label HorizontalOptions="Center" FontSize="15" FontAttributes="Bold" TextColor="White" Text="Seattle, USA" />
 
+        <Grid Margin="20" ColumnSpacing="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Frame Grid.Column="0">
+                <VerticalStackLayout>
+                    <Label Text="0%" HorizontalOptions="Center" FontSize="30" FontAttributes="Bold" TextColor="Indigo"/>
+                    <Label Text="Humidity" HorizontalOptions="Center"/>
+                </VerticalStackLayout>
+            </Frame>
+            <!-- Frame is obsolete, use Border with stroke for rounded corners -->
+            <Border Grid.Column="1" BackgroundColor="White">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="10"/>
+                </Border.StrokeShape>
+                <VerticalStackLayout>
+                    <Label Text="0%" HorizontalOptions="Center" FontSize="30" FontAttributes="Bold" TextColor="Indigo"/>
+                    <Label Text="Cloudy" HorizontalOptions="Center"/>
+                </VerticalStackLayout>
+            </Border>
+            <Frame Grid.Column="2">
+                <VerticalStackLayout>
+                    <Label Text="Yes" HorizontalOptions="Center" FontSize="30" FontAttributes="Bold" TextColor="Indigo"/>
+                    <Label Text="Is Day" HorizontalOptions="Center"/>
+                </VerticalStackLayout>
+            </Frame>
+        </Grid>
     </VerticalStackLayout>
 </ContentPage>
