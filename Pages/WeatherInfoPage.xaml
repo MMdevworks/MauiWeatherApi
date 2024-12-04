@@ -2,6 +2,8 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MauiWeatherApi.Pages.WeatherInfoPage"
+             xmlns:vm="clr-namespace:MauiWeatherApi.Models.ViewModels"
+             x:DataType="vm:WeatherInfoPageViewModel"
              Title="Weather Information Page"
              BackgroundColor="DarkSlateGrey">
                
@@ -14,17 +16,17 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
                 <!-- Allow user to enter coordinates -->
-                <Entry Placeholder="Lat" Grid.Column="0" />
-                <Entry Placeholder="Lon" Grid.Column="1" />
-                <Button Text="Fetch" Grid.Column="2"/>
+                <Entry Placeholder="Lat" Grid.Column="0" Text="{Binding Latitude}" />
+                <Entry Placeholder="Lon" Grid.Column="1" Text="{Binding Longitude}" />
+                <Button Text="Fetch" Grid.Column="2" Command="{Binding FetchWeatherInfoCommand}"/>
             </Grid>
         </Frame>
+
+        <Image WidthRequest="100" HeightRequest="100" Source="{Binding WeatherIcon}" />
         
-        <Image WidthRequest="100" HeightRequest="100"/>
-        
-        <Label HorizontalOptions="Center" FontSize="70" TextColor="White" Text="0°C" />
-        <Label HorizontalOptions="Center" FontSize="25" FontAttributes="Bold" TextColor="White" Text="Raining" />
-        <Label HorizontalOptions="Center" FontSize="15" FontAttributes="Bold" TextColor="White" Text="Seattle, USA" />
+        <Label HorizontalOptions="Center" FontSize="70" TextColor="White" Text="0°C" Text="{Binding Temperature}" />
+        <Label HorizontalOptions="Center" FontSize="25" FontAttributes="Bold" TextColor="White" Text="{Binding WeatherDescription}" />
+        <Label HorizontalOptions="Center" FontSize="15" FontAttributes="Bold" TextColor="White" Text="{Binding Location}" />
 
         <Grid Margin="20" ColumnSpacing="5">
             <Grid.ColumnDefinitions>
@@ -35,7 +37,7 @@
 
             <Frame Grid.Column="0">
                 <VerticalStackLayout>
-                    <Label Text="0%" HorizontalOptions="Center" FontSize="30" FontAttributes="Bold" TextColor="Indigo"/>
+                    <Label Text="{Binding Humidity}" HorizontalOptions="Center" FontSize="30" FontAttributes="Bold" TextColor="Indigo"/>
                     <Label Text="Humidity" HorizontalOptions="Center"/>
                 </VerticalStackLayout>
             </Frame>
@@ -45,13 +47,13 @@
                     <RoundRectangle CornerRadius="10"/>
                 </Border.StrokeShape>
                 <VerticalStackLayout>
-                    <Label Text="0%" HorizontalOptions="Center" FontSize="30" FontAttributes="Bold" TextColor="Indigo"/>
+                    <Label Text="{Binding CloudCoverLevel}" HorizontalOptions="Center" FontSize="30" FontAttributes="Bold" TextColor="Indigo"/>
                     <Label Text="Cloudy" HorizontalOptions="Center"/>
                 </VerticalStackLayout>
             </Border>
             <Frame Grid.Column="2">
                 <VerticalStackLayout>
-                    <Label Text="Yes" HorizontalOptions="Center" FontSize="30" FontAttributes="Bold" TextColor="Indigo"/>
+                        <Label Text="{Binding IsDay}" HorizontalOptions="Center" FontSize="30" FontAttributes="Bold" TextColor="Indigo"/>
                     <Label Text="Is Day" HorizontalOptions="Center"/>
                 </VerticalStackLayout>
             </Frame>
